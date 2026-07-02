@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html> <head> <title>Available Services</title>
+
+<style> body{ margin:0; font-family:Arial; display:flex; background:#f5f5f5; } .sidebar{ width:220px; height:100vh; background:#232938; color:white; padding:20px; } .sidebar ul{ list-style:none; padding:0; } .sidebar li{ padding:15px; cursor:pointer; } .sidebar li:hover{ background:#394057; } .main{ flex:1; padding:20px; } .filter button{ padding:8px 15px; margin:5px; border:1px solid #66b3ff; background:white; cursor:pointer; } .service-box{ background:#eaf7ff; padding:20px; margin-top:20px; } .card{ width:300px; background:white; padding:20px; margin-top:20px; border-radius:10px; box-shadow:0 0 8px lightgray; } .btn{ padding:10px; border:none; color:white; background:#007bff; border-radius:5px; cursor:pointer; margin-right:5px; } .message{ margin-top:15px; color:green; font-weight:bold; } </style>
+
+</head>
+
+<body onload="loadPage()">
+
+<div class="sidebar">
+
+<h2>🏠 Smart Residential</h2>
+
+<ul> <li onclick="menuClick('Dashboard')">Dashboard</li> <li onclick="menuClick('Services')">Services</li> <li onclick="menuClick('My Requests')">My Requests</li> <li onclick="menuClick('Profile')">Profile</li> <li onclick="menuClick('Main Site')">Main Site</li> <li onclick="menuClick('Logout')">Logout</li> </ul>
+
+</div>
+
+<div class="main">
+
+<h1>Available Services</h1>
+
+<div class="filter"> <button onclick="filterService('All')">All</button> <button onclick="filterService('Plumbing')">Plumbing</button> <button onclick="filterService('Electrical')">Electrical</button> <button onclick="filterService('Cleaning')">Cleaning</button> <button onclick="filterService('Gardening')">Gardening</button> </div>
+
+<div class="service-box" id="serviceBox"> <h2>Plumbing</h2> <p>Plumbing services including repairs and installations</p> </div>
+
+<div class="card"> <h3 id="serviceName">Plumbing Service</h3> <p id="serviceDesc">Fix taps, leakage, pipe issues</p> <h3 id="price">₹100</h3>
+
+<button class="btn" onclick="viewDetails()">View Details</button>
+<button class="btn" onclick="requestService()">Request Service</button>
+
+</div>
+
+<div class="message" id="msg"></div>
+
+</div>
+
+<script> // Page Load function loadPage(){ document.getElementById("msg").innerHTML = "Services Loaded Successfully!"; } // Sidebar Click function menuClick(menu){ alert(menu + " clicked"); } // Filter Function function filterService(type){ let box = document.getElementById("serviceBox"); if(type === "Plumbing"){ box.innerHTML = "<h2>Plumbing</h2><p>Fix pipes, leakage, taps</p>"; } else if(type === "Electrical"){ box.innerHTML = "<h2>Electrical</h2><p>Wiring, fan, switch repair</p>"; } else if(type === "Cleaning"){ box.innerHTML = "<h2>Cleaning</h2><p>Home and office cleaning</p>"; } else if(type === "Gardening"){ box.innerHTML = "<h2>Gardening</h2><p>Plant care and maintenance</p>"; } else{ box.innerHTML = "<h2>All Services</h2><p>Select a category to view services</p>"; } } // View Details function viewDetails(){ let name = document.getElementById("serviceName").innerText; alert("Service: " + name + "\\nPrice: ₹100\\nDescription: Basic service details"); } // Request Service function requestService(){ document.getElementById("msg").innerHTML = "Service Request Sent Successfully!"; } </script>
+
+</body> </html>

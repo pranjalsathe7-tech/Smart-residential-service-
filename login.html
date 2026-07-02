@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(to right, #00c6ff, #7fff00);
+}
+
+.container{
+    width:800px;
+    height:450px;
+    display:flex;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* LEFT SIDE */
+.left{
+    flex:1;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    padding:20px;
+}
+
+.left h2{
+    margin-bottom:20px;
+}
+
+input{
+    width:80%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+    outline:none;
+}
+
+.radio-group{
+    margin:10px 0;
+}
+
+.radio-group label{
+    margin:0 5px;
+    font-size:14px;
+}
+
+.btn{
+    margin-top:15px;
+    padding:10px 25px;
+    border:none;
+    border-radius:20px;
+    background:linear-gradient(to right,#00c6ff,#0072ff);
+    color:white;
+    cursor:pointer;
+}
+
+/* RIGHT SIDE */
+.right{
+    flex:1;
+    background:linear-gradient(to bottom,#1fa463,#0c8b4d);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.right h2{
+    margin-bottom:15px;
+}
+
+.signup-btn{
+    margin-top:20px;
+    padding:10px 25px;
+    border:1px solid white;
+    border-radius:20px;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+}
+
+.message{
+    margin-top:10px;
+    font-size:14px;
+    color:yellow;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+```
+<!-- LEFT SIDE (LOGIN) -->
+<div class="left">
+    <h2>Sign In</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <div class="radio-group">
+        <label><input type="radio" name="role" value="User"> User</label>
+        <label><input type="radio" name="role" value="Worker"> Worker</label>
+        <label><input type="radio" name="role" value="Admin"> Admin</label>
+    </div>
+
+    <small>Forgot your password?</small>
+
+    <button class="btn" onclick="login()">SIGN IN</button>
+
+    <div class="message" id="message"></div>
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="right">
+    <h2>Hello, Friend!</h2>
+    <p>Register with your personal details to use all of site features</p>
+    <button class="signup-btn">SIGN UP</button>
+</div>
+```
+
+</div>
+
+<script>
+function login(){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let roles = document.getElementsByName("role");
+
+    let selectedRole = "";
+    for(let i=0; i<roles.length; i++){
+        if(roles[i].checked){
+            selectedRole = roles[i].value;
+        }
+    }
+
+    if(email === "" || password === "" || selectedRole === ""){
+        document.getElementById("message").innerHTML = "Please fill all fields!";
+    } 
+    else{
+        document.getElementById("message").innerHTML = "Login Successful!";
+    }
+}
+</script>
+
+</body>
+</html>
