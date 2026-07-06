@@ -160,13 +160,13 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>Drive</h2>
+        <h2>Smart Residential</h2>
         <ul>
             <li>Dashboard</li>
             <li>My Files</li>
             <li>Shared</li>
             <li>Settings</li>
-            <li>Logout</li>
+            <li><a href="{{ url_for('logout') }}" style="color:white;text-decoration:none;">Logout</a></li>
         </ul>
     </div>
 
@@ -176,7 +176,7 @@
         <!-- Header -->
         <div class="header">
             <input type="text" placeholder="Search..." class="search">
-            <h3>Welcome Back 👋</h3>
+            <h3>Welcome Back, {{ current_user.first_name if current_user else '' }} 👋</h3>
         </div>
 
         <!-- Cards -->

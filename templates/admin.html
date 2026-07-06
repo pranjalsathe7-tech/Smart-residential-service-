@@ -136,6 +136,7 @@
             <li onclick="menuClick('Requests')">Service Requests</li>
             <li onclick="menuClick('Reports')">Reports</li>
             <li onclick="menuClick('Settings')">Settings</li>
+            <li><a href="{{ url_for('logout') }}" style="color:white;text-decoration:none;">Logout</a></li>
         </ul>
     </div>
 
@@ -144,19 +145,19 @@
         <div class="header"> Admin dashboard </div>
 
         <div class="welcome">
-            <h2>Welcome, Admin!</h2>
+            <h2>Welcome, {{ current_user.first_name if current_user else 'Admin' }}!</h2>
             <p>Manage users, workers, services and reports.</p>
         </div>
 
         <div class="cards">
             <div class="card blue">
                 <h3>Total Users</h3>
-                <h1 id="users">7</h1>
+                <h1 id="users">{{ users|selectattr('role', 'equalto', 'user')|list|length }}</h1>
             </div>
 
             <div class="card green">
                 <h3>Total Workers</h3>
-                <h1 id="workers">4</h1>
+                <h1 id="workers">{{ users|selectattr('role', 'equalto', 'worker')|list|length }}</h1>
             </div>
 
             <div class="card sky">
@@ -172,30 +173,31 @@
 
         <div class="message" id="msg"></div>
 
-        <button onclick="addRequest()">Add Service Request</button>
-
         <table id="table">
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Message</th>
-                <th>Date</th>
-                <th>Status</th>
+                <th>Role</th>
+                <th>Joined</th>
             </tr>
 
+            {% for u in users %}
             <tr>
-                <td>John</td>
-                <td>john@gmail.com</td>
-                <td>Service Request</td>
-                <td>18-06-2026</td>
-                <td>Pending</td>
+                <td>{{ u.first_name }} {{ u.last_name }}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.role }}</td>
+                <td>{{ u.created_at.strftime('%d-%m-%Y') if u.created_at else '' }}</td>
             </tr>
-
+            {% else %}
+            <tr>
+                <td colspan="4">No users found.</td>
+            </tr>
+            {% endfor %}
         </table>
 
     </div>
 
-    <script> // Page Load Message function loadDashboard(){ document.getElementById("msg").innerHTML = "Admin Dashboard Loaded Successfully!"; } // Sidebar Click function menuClick(menu){ alert(menu + " clicked"); } // Add New Row function addRequest(){ let table = document.getElementById("table"); let row = table.insertRow(-1); row.insertCell(0).innerHTML = "New User"; row.insertCell(1).innerHTML = "user@gmail.com"; row.insertCell(2).innerHTML = "New Request"; row.insertCell(3).innerHTML = new Date().toLocaleDateString(); row.insertCell(4).innerHTML = "Pending"; } </script>
+    <script> // Page Load Message function loadDashboard(){ document.getElementById("msg").innerHTML = "Admin Dashboard Loaded Successfully!"; } // Sidebar Click function menuClick(menu){ alert(menu + " clicked"); } </script>
 
 </body>
 

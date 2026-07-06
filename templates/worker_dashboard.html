@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: #f4f4f4;
+        }
+
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #1f2430;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar ul li:hover {
+            background: #30384a;
+            border-radius: 5px;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .blue {
+            background: #0066ff;
+        }
+
+        .green {
+            background: #00a651;
+        }
+
+        .sky {
+            background: #00cfff;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>🛠️ Smart Residential</h2>
+
+        <ul>
+            <li>Dashboard</li>
+            <li>My Jobs</li>
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('home') }}">Main Site</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <div class="header">Worker dashboard</div>
+
+        <div class="welcome">
+            <h2>Welcome, {{ current_user.first_name if current_user else 'Worker' }}!</h2>
+            <p>Here is an overview of your assigned service requests.</p>
+        </div>
+
+        <div class="cards">
+            <div class="card blue">
+                <h3>Assigned Jobs</h3>
+                <h1>0</h1>
+            </div>
+
+            <div class="card green">
+                <h3>Completed</h3>
+                <h1>0</h1>
+            </div>
+
+            <div class="card sky">
+                <h3>Pending</h3>
+                <h1>0</h1>
+            </div>
+        </div>
+
+        <table>
+            <tr>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td colspan="4">No service requests assigned yet.</td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+
+</html>

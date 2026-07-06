@@ -117,58 +117,46 @@
 
     <div class="container">
 
-        ```
         <!-- LEFT SIDE (LOGIN) -->
         <div class="left">
             <h2>Sign In</h2>
 
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="password" placeholder="Password">
-
-            <div class="radio-group">
-                <label><input type="radio" name="role" value="User"> User</label>
-                <label><input type="radio" name="role" value="Worker"> Worker</label>
-                <label><input type="radio" name="role" value="Admin"> Admin</label>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="message">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
             </div>
+            {% endif %}
+            {% endwith %}
 
-            <small>Forgot your password?</small>
+            <form method="POST" action="{{ url_for('login') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-            <button class="btn" onclick="login()">SIGN IN</button>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
 
-            <div class="message" id="message"></div>
+                <div class="radio-group">
+                    <label><input type="radio" name="role" value="user" style="width:auto" checked> User</label>
+                    <label><input type="radio" name="role" value="worker" style="width:auto"> Worker</label>
+                    <label><input type="radio" name="role" value="admin" style="width:auto"> Admin</label>
+                </div>
+
+                <small>Forgot your password?</small>
+
+                <button class="btn" type="submit">SIGN IN</button>
+            </form>
         </div>
 
         <!-- RIGHT SIDE -->
         <div class="right">
             <h2>Hello, Friend!</h2>
             <p>Register with your personal details to use all of site features</p>
-            <button class="signup-btn">SIGN UP</button>
+            <a href="{{ url_for('register') }}"><button class="signup-btn" type="button">SIGN UP</button></a>
         </div>
-        ```
 
     </div>
-
-    <script>
-        function login() {
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
-            let roles = document.getElementsByName("role");
-
-            let selectedRole = "";
-            for (let i = 0; i < roles.length; i++) {
-                if (roles[i].checked) {
-                    selectedRole = roles[i].value;
-                }
-            }
-
-            if (email === "" || password === "" || selectedRole === "") {
-                document.getElementById("message").innerHTML = "Please fill all fields!";
-            }
-            else {
-                document.getElementById("message").innerHTML = "Login Successful!";
-            }
-        }
-    </script>
 
 </body>
 

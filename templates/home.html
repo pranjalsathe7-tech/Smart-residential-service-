@@ -95,18 +95,25 @@
     <!-- Navbar -->
     <div class="navbar">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/login ">login </a></li>
-            <li><a href="/Registration ">Registration</a></li>
-            <li><a href="/services ">services</a></li>
-            <li><a href="/admin">admin</a></li>
-            <li><a href="/available">available</a></li>
-            <li><a href="/profile ">Profilep</a></li>
-            <li><a href="{{ url_for('user') }}"> User_Dashboard</a></li>
-            <li><a href="/Service_Management">Service_Management</a></li>
-            <li><a href="/result">Result</a></li>
-
-
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('available') }}">Available</a></li>
+            <li><a href="{{ url_for('result') }}">Result</a></li>
+            {% if current_user %}
+            {% if current_user.role == 'admin' %}
+            <li><a href="{{ url_for('admin') }}">Admin Dashboard</a></li>
+            <li><a href="{{ url_for('Servicem') }}">Service Management</a></li>
+            {% elif current_user.role == 'worker' %}
+            <li><a href="{{ url_for('worker') }}">Worker Dashboard</a></li>
+            {% else %}
+            <li><a href="{{ url_for('user') }}">My Dashboard</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Registration</a></li>
+            {% endif %}
         </ul>
     </div>
 
