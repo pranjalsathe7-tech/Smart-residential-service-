@@ -1,0 +1,138 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
+
+        .container {
+            width: 900px;
+            height: 500px;
+            display: flex;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #2c2638;
+        }
+
+        /* LEFT SIDE */
+        .left {
+            width: 50%;
+            background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470") no-repeat center/cover;
+            position: relative;
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffffff33;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .left-text {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* RIGHT SIDE */
+        .right {
+            width: 50%;
+            padding: 40px;
+            color: white;
+        }
+
+        .right h1 {
+            margin-bottom: 10px;
+        }
+
+        .right p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .right a {
+            color: #9b7bff;
+            text-decoration: none;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 6px;
+            background: #3a344a;
+            color: white;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .checkbox input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #7c5cff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social button {
+            background: transparent;
+            border: 1px solid #555;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: yellow;
+        }
